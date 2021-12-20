@@ -1,0 +1,30 @@
+name: Rom Poster Bot Runner
+
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
+      - 'PostBot/config.py'
+      - 'PostBot/post.py'
+      - 'notes.txt'
+      - 'sample_config.env'
+      - 'config.env'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: sudo pip install pyTelegramBotAPI
+        
+      - name: Run RomPosterBot
+        run: sudo -E python3 RomPosterBot/post.py
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }} 

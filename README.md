@@ -46,3 +46,4 @@ After adding changelog and notes the last thing that remains is to run the bot.
 <br><b>We use Github Actions to run the bot</b>
 -  Actions will automatically run after modifying changelog.txt and the rom will be posted
 -  You can also run the bot but going to `actions > Rom Poster Bot Runner > workflow-dispatch` and tap on run
+<br><b>Note:</b> After posting the bot pins the message too

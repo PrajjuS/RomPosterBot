@@ -2,12 +2,14 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv("config.env", override=True)
+
 def getConfig(config_name: str):
     return os.environ.get(config_name)
 
 try:
     BOT_TOKEN = getConfig("BOT_TOKEN")
     CHAT_ID = int(getConfig("CHAT_ID"))
+    WITH_BUTTONS = getConfig("WITH_BUTTONS")
     BRAND = getConfig("BRAND")
     DEVICE_NAME = getConfig("DEVICE_NAME")
     CODENAME = getConfig("CODENAME")
@@ -33,6 +35,18 @@ try:
     CUSTOM_MESSAGE = getConfig("CUSTOM_MESSAGE")
 except:
     pass
+
+def check():
+    if WITH_BUTTONS == "True":
+        pass
+    elif WITH_BUTTONS == "False":
+        pass
+    else:
+        msg = "Config WITH_BUTTONS should be 'True' or 'False' and not anything other than these"
+        msg += "\nExiting..."
+        print(msg)
+        exit
+check()
 
 def changelog():
     with open("/changelog.txt", "r") as changelog:

@@ -5,7 +5,11 @@ Made by lazy peep for lazy peeps.
 ## How to use
 ### 1. Filling up config
 Fork the repo and make a file named `config.env` by using `sample_config.env` and fill up all the vars
-<br><br><b>Main Configs</b>
+<br><br>
+<b>Bot Configs</b>
+- `WITH_BUTTONS`: 'True' if you want to post rom banner with buttons and 'False' if you want to post rom banner without buttons (Default is True)
+
+<b>Main Configs</b>
 - `BRAND`: Device brand name
 - `DEVICE_NAME`: Device name
 - `CODENAME`: Device codename

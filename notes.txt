@@ -1,4 +1,6 @@
+- <b>Mobile Data working in SIM 1</b>
 - SeLinux is Enforcing
 - Gapps Build
 - CTS Passes by default and banking apps are working fine
 - Unlimited Google photos in original quality available
+- Screenshots: <a href="https://t.me/NoobProjects/7892">Here</a>

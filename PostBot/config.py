@@ -49,11 +49,11 @@ def check():
 check()
 
 def changelog():
-    with open("/changelog.txt", "r") as changelog:
+    with open("changelog.txt", "r") as changelog:
         DEVICE_CHANGELOG = changelog.read()
     return DEVICE_CHANGELOG
 
 def notes():
-    with open("/notes.txt", "r") as notes:
+    with open("notes.txt", "r") as notes:
         DEVICE_NOTES = notes.read()
     return DEVICE_NOTES

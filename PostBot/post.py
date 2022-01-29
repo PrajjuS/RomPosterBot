@@ -37,15 +37,17 @@ if WITH_BUTTONS == "True":
         return buttons.add(button1, button2, button3)
 
     def tg_message():
-        if STICKER_ID:
-            bot.send_sticker(CHAT_ID, STICKER_ID)
-            msg = send_post(CHAT_ID, BANNER_URL, message_content(), button())
-        else:
-            msg = send_post(CHAT_ID, BANNER_URL, message_content(), button())
-        try:
-            bot.pin_chat_message(CHAT_ID, msg.message_id)
-        except Exception:
-            print("Not enough rights to pin message in the chat")
+        print(f"Posting rom in the following chats: {CHAT_ID}")
+        for chats in CHAT_ID:
+            if STICKER_ID:
+                bot.send_sticker(chats, STICKER_ID)
+                msg = send_post(chats, BANNER_URL, message_content(), button())
+            else:
+                msg = send_post(chats, BANNER_URL, message_content(), button())
+            try:
+                bot.pin_chat_message(chats, msg.message_id)
+            except Exception:
+                print(f"Not enough rights to pin message in the chat: {chats}")
         print("Success")
 
 else:
@@ -62,8 +64,8 @@ else:
         msg += f"<b>Rom Version:</b> {ROM_VERSION} <b>|</b> Android {ANDROID_VERSION}\n"
         msg += f"<b>Build Date:</b> {BUILD_DATE}\n\n"
         msg += f"<b>Source Changelogs:</b> <a href='{SOURCE_CHANGELOG_URL}'>Here</a>\n\n"
-        msg += f"<b>Device Changelogs:</b>\n{changelog()}\n\n"
-        msg += f"<b>Notes:</b>\n{notes()}\n\n"
+        msg += f"<b>Device Changelogs:</b>\n{changelog()}\n"
+        msg += f"<b>Notes:</b>\n{notes()}\n"
         msg += f"<b>XDA Thread:</b> <a href='{XDA_POST}'>Here</a>\n"
         msg += f"<b>Download:</b> <a href='{DOWNLOAD_URL}'>Here</a>\n"
         msg += f"<b>MD5:</b> <code>{MD5}</code>\n\n"
@@ -76,15 +78,17 @@ else:
         return msg
 
     def tg_message():
-        if STICKER_ID:
-            bot.send_sticker(CHAT_ID, STICKER_ID)
-            msg = send_post(CHAT_ID, BANNER_URL, message_content())
-        else:
-            msg = send_post(CHAT_ID, BANNER_URL, message_content())
-        try:
-            bot.pin_chat_message(CHAT_ID, msg.message_id)
-        except Exception:
-            print("Not enough rights to pin message in the chat")
+        print(f"Posting rom in the following chats: {CHAT_ID}")
+        for chats in CHAT_ID:
+            if STICKER_ID:
+                bot.send_sticker(chats, STICKER_ID)
+                msg = send_post(chats, BANNER_URL, message_content())
+            else:
+                msg = send_post(chats, BANNER_URL, message_content())
+            try:
+                bot.pin_chat_message(chats, msg.message_id)
+            except Exception:
+                print(f"Not enough rights to pin message in the chat: {chats}")
         print("Success")
 
 tg_message()

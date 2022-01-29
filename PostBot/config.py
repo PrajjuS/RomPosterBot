@@ -8,7 +8,7 @@ def getConfig(config_name: str):
 
 try:
     BOT_TOKEN = getConfig("BOT_TOKEN")
-    CHAT_ID = int(getConfig("CHAT_ID"))
+    CHAT_ID = {int(x) for x in getConfig("CHAT_ID").split(" ")}
     WITH_BUTTONS = getConfig("WITH_BUTTONS")
     BRAND = getConfig("BRAND")
     DEVICE_NAME = getConfig("DEVICE_NAME")

@@ -24,6 +24,7 @@ try:
     BUILD_TYPE = getConfig("BUILD_TYPE")
     XDA_POST = getConfig("XDA_POST")
     DOWNLOAD_URL = getConfig("DOWNLOAD_URL")
+    SCREENSHOT_URL = getConfig("SCREENSHOT_URL")
     MD5 = getConfig("MD5")
     HASHTAGS = getConfig("HASHTAGS")
 except KeyError:

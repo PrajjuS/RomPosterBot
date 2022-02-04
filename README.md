@@ -26,6 +26,7 @@ Fork the repo and make a file named `config.env` by using `sample_config.env` an
 - `BUILD_TYPE`: Rom build type (Official/Unofficial)
 - `XDA_POST`: XDA post URL of rom
 - `DOWNLOAD_URL`: Download URL of rom
+- `SCREENSHOT_URL`: Screenshots URL of rom
 - `MD5`: MD5 checksum of rom
 - `HASHTAGS`: Hashtags for rom post
 

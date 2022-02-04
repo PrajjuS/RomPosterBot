@@ -24,6 +24,7 @@ try:
     BUILD_TYPE = getConfig("BUILD_TYPE")
     XDA_POST = getConfig("XDA_POST")
     DOWNLOAD_URL = getConfig("DOWNLOAD_URL")
+    SCREENSHOT_URL = getConfig("SCREENSHOT_URL")
     MD5 = getConfig("MD5")
     HASHTAGS = getConfig("HASHTAGS")
 except KeyError:
@@ -48,12 +49,19 @@ def check():
         exit
 check()
 
-def changelog():
+def changelog(): # Not gonna remove this for now. I may need this in future.
     with open("changelog.txt", "r") as changelog:
         DEVICE_CHANGELOG = changelog.read()
     return DEVICE_CHANGELOG
 
-def notes():
+def notes(): # Not gonna remove this for now. I may need this in future.
     with open("notes.txt", "r") as notes:
         DEVICE_NOTES = notes.read()
     return DEVICE_NOTES
+
+def tg_format(content):
+    with open(content, "r") as tg:
+        TG_FORMATTED = ""
+        for lines in tg.readlines():
+            TG_FORMATTED = TG_FORMATTED + lines.strip("\n") + "<br>"
+    return TG_FORMATTED

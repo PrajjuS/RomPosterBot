@@ -1,14 +1,43 @@
 import telebot
+import time
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import *
+from telegraph import Telegraph
+from telegraph.exceptions import RetryAfterError
 
 bot = telebot.TeleBot(BOT_TOKEN, parse_mode="HTML")
+
+telegraph = Telegraph()
+telegraph.create_account(short_name=f"{MAINTAINER_USERNAME}")
 
 def send_post(chat_id, image, caption, button):
     if caption == "" or not caption or caption is None:
         return bot.send_photo(chat_id=chat_id, photo=image, reply_markup=button)
     else:
         return bot.send_photo(chat_id=chat_id, photo=image, caption=caption, reply_markup=button)
+
+def create_page(title, content):
+    try:
+        return telegraph.create_page(
+            title=title,
+            html_content=content,
+            author_name=MAINTAINER_USERNAME,
+            author_url=f"https://t.me/{MAINTAINER_USERNAME}"
+        )['path']
+    except RetryAfterError as eroooor:
+        print(f"Telegraph Flood control exceeded. I will sleep for {eroooor.retry_after} seconds")
+        time.sleep(eroooor.retry_after)
+        return create_page(title, content)
+
+def telegraph_content():
+    telegraph_content = f""
+    telegraph_content += f"<h4><u>Device Changelog</u>:</h4>"
+    telegraph_content += f"{tg_format('changelog.txt')}"
+    telegraph_content += f"<h4><u>Notes</u>:</h4>"
+    telegraph_content += f"{tg_format('notes.txt')}"
+    return telegraph_content
+
+telegraph_page = create_page(f"{DEVICE_NAME} {ROM_NAME}", f"{telegraph_content()}")
 
 if WITH_BUTTONS == "True":
     def message_content():
@@ -17,9 +46,9 @@ if WITH_BUTTONS == "True":
         msg += f"<b>Maintainer:</b> @{MAINTAINER_USERNAME}\n"
         msg += f"<b>Rom Version:</b> {ROM_VERSION} <b>|</b> Android {ANDROID_VERSION}\n"
         msg += f"<b>Build Date:</b> {BUILD_DATE}\n\n"
-        msg += f"<b>Source Changelogs:</b> <a href='{SOURCE_CHANGELOG_URL}'>Here</a>\n\n"
-        msg += f"<b>Device Changelogs:</b>\n{changelog()}\n"
-        msg += f"<b>Notes:</b>\n{notes()}\n"
+        msg += f"<b>Source Changelogs:</b> <a href='{SOURCE_CHANGELOG_URL}'>Here</a>\n"
+        msg += f"<b>Device Changelogs:</b> <a href='https://telegra.ph/{telegraph_page}'>Here</a>\n\n"
+        msg += f"<b>Screenshots:</b> <a href='{SCREENSHOT_URL}'>Here</a>\n"
         msg += f"<b>MD5:</b> <code>{MD5}</code>\n\n"
         if CUSTOM_MESSAGE:
             msg += f"<b>{CUSTOM_MESSAGE}</b>\n\n"
@@ -63,11 +92,11 @@ else:
         msg += f"<b>Maintainer:</b> @{MAINTAINER_USERNAME}\n"
         msg += f"<b>Rom Version:</b> {ROM_VERSION} <b>|</b> Android {ANDROID_VERSION}\n"
         msg += f"<b>Build Date:</b> {BUILD_DATE}\n\n"
-        msg += f"<b>Source Changelogs:</b> <a href='{SOURCE_CHANGELOG_URL}'>Here</a>\n\n"
-        msg += f"<b>Device Changelogs:</b>\n{changelog()}\n"
-        msg += f"<b>Notes:</b>\n{notes()}\n"
+        msg += f"<b>Source Changelogs:</b> <a href='{SOURCE_CHANGELOG_URL}'>Here</a>\n"
+        msg += f"<b>Device Changelogs:</b> <a href='https://telegra.ph/{telegraph_page}'>Here</a>\n\n"
         msg += f"<b>XDA Thread:</b> <a href='{XDA_POST}'>Here</a>\n"
         msg += f"<b>Download:</b> <a href='{DOWNLOAD_URL}'>Here</a>\n"
+        msg += f"<b>Screenshots:</b> <a href='{SCREENSHOT_URL}'>Here</a>\n"
         msg += f"<b>MD5:</b> <code>{MD5}</code>\n\n"
         msg += f"<b>Support Group:</b> @{SUPPORT_GROUP}\n\n"
         if CUSTOM_MESSAGE:

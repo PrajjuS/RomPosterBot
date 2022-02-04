@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install Dependencies
-        run: sudo pip install pyTelegramBotAPI python-dotenv
+        run: sudo pip install pyTelegramBotAPI python-dotenv telegraph
         
       - name: Run RomPosterBot
         run: sudo -E python3 PostBot/post.py

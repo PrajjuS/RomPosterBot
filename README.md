@@ -26,6 +26,7 @@ Fork the repo and make a file named `config.env` by using `sample_config.env` an
 - `BUILD_TYPE`: Rom build type (Official/Unofficial)
 - `XDA_POST`: XDA post URL of rom
 - `DOWNLOAD_URL`: Download URL of rom
+- `SCREENSHOT_URL`: Screenshots URL of rom
 - `MD5`: MD5 checksum of rom
 - `HASHTAGS`: Hashtags for rom post
 
@@ -36,7 +37,7 @@ Fork the repo and make a file named `config.env` by using `sample_config.env` an
 ### 2. Adding secrets
 After filling up config go to your repo `settings > secrets > new repository secret`, then you need to add two secrets
 - `BOT_TOKEN`: Telegram bot token
-- `CHAT_ID`: Telegram group/channel chat ID where the rom needs to be posted(You can even add multiple chat IDs by seperating them with space, Example: `-0123456789 -69696969 -1003512356`)
+- `CHAT_ID`: Telegram group/channel chat ID where the rom needs to be posted(You can even add multiple chat IDs by seperating them with space, Examples: `-0123456789 -69696969 -1003512356`)
 <br><b>Note:</b> Bot should be added in the group/channel where the rom needs to be posted
 
 

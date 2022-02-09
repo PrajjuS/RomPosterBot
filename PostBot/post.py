@@ -29,7 +29,15 @@ def create_page(title, content):
         time.sleep(eroooor.retry_after)
         return create_page(title, content)
 
-telegraph_page = create_page(f"{DEVICE_NAME} {ROM_NAME} Changelog", f"{tg_changelog()}")
+def telegraph_content():
+    telegraph_content = f""
+    telegraph_content += f"<h4><u>Device Changelog</u>:</h4>"
+    telegraph_content += f"{tg_format('changelog.txt')}"
+    telegraph_content += f"<h4><u>Notes</u>:</h4>"
+    telegraph_content += f"{tg_format('notes.txt')}"
+    return telegraph_content
+
+telegraph_page = create_page(f"{DEVICE_NAME} {ROM_NAME}", f"{telegraph_content()}")
 
 if WITH_BUTTONS == "True":
     def message_content():
@@ -40,7 +48,6 @@ if WITH_BUTTONS == "True":
         msg += f"<b>Build Date:</b> {BUILD_DATE}\n\n"
         msg += f"<b>Source Changelogs:</b> <a href='{SOURCE_CHANGELOG_URL}'>Here</a>\n"
         msg += f"<b>Device Changelogs:</b> <a href='https://telegra.ph/{telegraph_page}'>Here</a>\n\n"
-        msg += f"<b>Notes:</b>\n{notes()}\n"
         msg += f"<b>Screenshots:</b> <a href='{SCREENSHOT_URL}'>Here</a>\n"
         msg += f"<b>MD5:</b> <code>{MD5}</code>\n\n"
         if CUSTOM_MESSAGE:
@@ -87,7 +94,6 @@ else:
         msg += f"<b>Build Date:</b> {BUILD_DATE}\n\n"
         msg += f"<b>Source Changelogs:</b> <a href='{SOURCE_CHANGELOG_URL}'>Here</a>\n"
         msg += f"<b>Device Changelogs:</b> <a href='https://telegra.ph/{telegraph_page}'>Here</a>\n\n"
-        msg += f"<b>Notes:</b>\n{notes()}\n"
         msg += f"<b>XDA Thread:</b> <a href='{XDA_POST}'>Here</a>\n"
         msg += f"<b>Download:</b> <a href='{DOWNLOAD_URL}'>Here</a>\n"
         msg += f"<b>Screenshots:</b> <a href='{SCREENSHOT_URL}'>Here</a>\n"

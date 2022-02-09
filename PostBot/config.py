@@ -54,14 +54,14 @@ def changelog(): # Not gonna remove this for now. I may need this in future.
         DEVICE_CHANGELOG = changelog.read()
     return DEVICE_CHANGELOG
 
-def notes():
+def notes(): # Not gonna remove this for now. I may need this in future.
     with open("notes.txt", "r") as notes:
         DEVICE_NOTES = notes.read()
     return DEVICE_NOTES
 
-def tg_changelog():
-    with open("changelog.txt", "r") as tg_changelog:
-        TG_DEVICE_CHANGELOG = ""
-        for changeloogs in tg_changelog.readlines():
-            TG_DEVICE_CHANGELOG = TG_DEVICE_CHANGELOG + changeloogs.strip("\n") + "<br>"
-    return TG_DEVICE_CHANGELOG
+def tg_format(content):
+    with open(content, "r") as tg:
+        TG_FORMATTED = ""
+        for lines in tg.readlines():
+            TG_FORMATTED = TG_FORMATTED + lines.strip("\n") + "<br>"
+    return TG_FORMATTED

@@ -1,0 +1,53 @@
+name: Changelog Generator
+
+on:
+  workflow_dispatch:
+
+env:
+  GitHubMail: "theprajjus@gmail.com"
+  GitHubName: "PrajjuS"
+  GitHubBranch: "elixir-12"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Install Dependencies
+        run: |
+          sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get install -y git wget
+      
+      - name: Set Git Configs & Secrets
+        run: |
+          git config --global user.email ${GitHubMail}
+          git config --global user.name ${GitHubName}
+          git config --global color.ui true
+          
+      - name: Generate Changelog
+        run: |
+          function generate_changelog() {
+                git clone https://${{ secrets.GH_TOKEN }}@github.com/PrajjuS/device_xiaomi_vince -b ${GitHubBranch}
+                git clone https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY} -b ${GitHubBranch} RomPosterBot
+                cd device_xiaomi_vince
+                wget https://raw.githubusercontent.com/GhostMaster69-dev/android_kernel_xiaomi_vince/stable/Makefile
+                LOGS=$(git log --reverse --after=$(date +%Y-%m-01) --pretty=format:'- %s' | sed -e 's|.*: ||g' | sed -e 's|^|- |g')
+                VERSION=$(grep 'VERSION' Makefile | head -n 1 | sed 's|.*=||1' | sed 's| ||g')
+                PATCHLEVEL=$(grep 'PATCHLEVEL' Makefile | head -n 1 | sed 's|.*=||1' | sed 's| ||g')
+                SUBLEVEL=$(grep 'SUBLEVEL' Makefile | head -n 1 | sed 's|.*=||1' | sed 's| ||g')
+                echo -e "- $(date +%B) Security Patch\n${LOGS}\n- Upstream kernel to ${VERSION}.${PATCHLEVEL}.${SUBLEVEL}" > ../RomPosterBot/changelog.txt
+                cd ..
+                rm -rf device_xiaomi_vince
+          }
+          generate_changelog
+          
+      - name: Push Changelog
+        run: |
+          function commit_changelog() {
+                cd RomPosterBot
+                git add changelog.txt
+                git commit -sm "Update Changelog $(date)"
+                git push -u -f https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY} HEAD:${GitHubBranch}
+          }
+          commit_changelog

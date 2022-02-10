@@ -10,6 +10,7 @@ on:
       - 'notes.txt'
       - 'sample_config.env'
       - 'config.env'
+      - '.github/workflows/gen-changelog.yml'
   workflow_dispatch:
 
 jobs:

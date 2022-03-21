@@ -1,4 +1,5 @@
-- <b>Mobile Data working in SIM 1</b>
+- <u><b>Mobile Data working in both SIMs</b></u>
+- <b>Turn on and off Aeroplane Mode to fix data if you face any data swithcing issue</b>
 - SeLinux is Enforcing
 - Gapps Build
 - CTS Passes by default and banking apps are working fine

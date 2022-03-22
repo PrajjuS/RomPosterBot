@@ -36,7 +36,7 @@ jobs:
                 VERSION=$(grep 'VERSION' Makefile | head -n 1 | sed 's|.*=||1' | sed 's| ||g')
                 PATCHLEVEL=$(grep 'PATCHLEVEL' Makefile | head -n 1 | sed 's|.*=||1' | sed 's| ||g')
                 SUBLEVEL=$(grep 'SUBLEVEL' Makefile | head -n 1 | sed 's|.*=||1' | sed 's| ||g')
-                echo -e "- $(date +%B) Security Patch\n${LOGS}\n- Upstream kernel to ${VERSION}.${PATCHLEVEL}.${SUBLEVEL}" > ../RomPosterBot/changelog.txt
+                echo -e "- February Security Patch\n${LOGS}\n- Upstream kernel to ${VERSION}.${PATCHLEVEL}.${SUBLEVEL}" > ../RomPosterBot/changelog.txt
                 cd ..
                 rm -rf device_xiaomi_vince
           }

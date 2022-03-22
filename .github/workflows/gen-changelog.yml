@@ -31,7 +31,7 @@ jobs:
                 git clone https://${{ secrets.GH_TOKEN }}@github.com/PrajjuS/device_xiaomi_vince -b ${GitHubBranch}
                 git clone https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY} -b ${GitHubBranch} RomPosterBot
                 cd device_xiaomi_vince
-                wget https://raw.githubusercontent.com/GhostMaster69-dev/android_kernel_xiaomi_vince/stable/Makefile
+                wget https://raw.githubusercontent.com/GhostMaster69-dev/android_kernel_xiaomi_vince/12/Makefile
                 LOGS=$(git log --reverse --after=$(date +%Y-%m-01) --pretty=format:'- %s' | sed -e 's|.*: ||g' | sed -e 's|^|- |g')
                 VERSION=$(grep 'VERSION' Makefile | head -n 1 | sed 's|.*=||1' | sed 's| ||g')
                 PATCHLEVEL=$(grep 'PATCHLEVEL' Makefile | head -n 1 | sed 's|.*=||1' | sed 's| ||g')

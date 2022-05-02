@@ -1,6 +1,8 @@
-- <u><b>Mobile Data working in both SIMs</b></u>
-- <b>Turn on and off Aeroplane Mode to fix data if you face any data swithcing issue</b>
+- Cleanflash is compulsory
+- Mobile Data working in both SIMs
+- Turn on and off Aeroplane Mode to fix data if you face any data swithcing issue
 - SeLinux is Enforcing
 - Gapps Build
 - CTS Passes by default and banking apps are working fine
 - Unlimited Google photos in original quality available
+- Well, since my exams are going on now there won't be any fixes or any device side changes

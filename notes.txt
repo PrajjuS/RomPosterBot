@@ -1,4 +1,3 @@
-- Cleanflash is compulsory
 - Mobile Data working in both SIMs
 - Turn on and off Aeroplane Mode to fix data if you face any data swithcing issue
 - SeLinux is Enforcing

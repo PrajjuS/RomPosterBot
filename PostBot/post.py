@@ -47,7 +47,7 @@ if WITH_BUTTONS == "True":
         msg += f"<b>Rom Version:</b> {ROM_VERSION} <b>|</b> Android {ANDROID_VERSION}\n"
         msg += f"<b>Build Date:</b> {BUILD_DATE}\n\n"
         msg += f"<b>Source Changelogs:</b> <a href='{SOURCE_CHANGELOG_URL}'>Here</a>\n"
-        msg += f"<b>Device Changelogs:</b> <a href='https://telegra.ph/{telegraph_page}'>Here</a>\n\n"
+        msg += f"<b>Device Changelogs:</b> <a href='https://graph.org/{telegraph_page}'>Here</a>\n\n"
         msg += f"<b>Screenshots:</b> <a href='{SCREENSHOT_URL}'>Here</a>\n"
         msg += f"<b>MD5:</b> <code>{MD5}</code>\n\n"
         if CUSTOM_MESSAGE:

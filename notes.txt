@@ -4,4 +4,3 @@
 - Gapps Build
 - CTS Passes by default and banking apps are working fine
 - Unlimited Google photos in original quality available
-- Well, since my exams are going on now there won't be any fixes or any device side changes

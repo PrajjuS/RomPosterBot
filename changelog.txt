@@ -1,2 +1,3 @@
-- September Security Patch
-- Initial BETA Build
+- Fixed Bluetooth issues
+- Fixed Hotspot issues
+- Fixed USB tethering

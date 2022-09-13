@@ -1,5 +1,5 @@
 - Initial BETA A13 build
 - SeLinux is Enforcing
 - Gapps Build
-- CTS Passes by default and banking apps are working fine
+- There is an issue with CTS and will be fixed in 3.1 update
 - If you face any bugs please report it with logs in the support group
